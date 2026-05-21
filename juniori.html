@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olimpiada de Științe pentru Juniori</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container" style="margin:0 auto; padding:0;">
+            <a href="index.html" class="back-link">← Înapoi la portal</a>
+            <h1>🔬 Olimpiada de Științe pentru Juniori</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="search-box">
+            <div class="filter-group">
+                <label for="filter-year">Anul</label>
+                <select id="filter-year" onchange="filtreaza()">
+                    <option value="toate">Toți anii</option>
+                    <option value="2024">2024</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="filter-stage">Etapa</label>
+                <select id="filter-stage" onchange="filtreaza()">
+                    <option value="toate">Toate etapele</option>
+                    <option value="Judeteana">Etapa Județeană</option>
+                    <option value="Nationala">Etapa Națională</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="results" class="results-container"></div>
+    </div>
+
+    <script>
+        const dateJuniori = [
+            { an: "2024", etapa: "Nationala", titlu: "Olimpiada de Științe pentru Juniori - Etapa Națională", linkSub": "pdf/juniori_2024_n_sub.pdf", linkBar: "pdf/juniori_2024_n_bar.pdf" }
+        ];
+
+        function filtreaza() {
+            const an = document.getElementById('filter-year').value;
+            const etapa = document.getElementById('filter-stage').value;
+            const container = document.getElementById('results');
+            container.innerHTML = '';
+
+            const filtrate = dateJuniori.filter(item => {
+                return (an === 'toate' || item.an === an) && (etapa === 'toate' || item.etapa === etapa);
+            });
+
+            if(filtrate.length === 0) {
+                container.innerHTML = '<div class="no-results"><h3>Niciun rezultat</h3><p>Nu s-au găsit subiecte.</p></div>';
+                return;
+            }
+
+            filtrate.forEach(item => {
+                container.innerHTML += `
+                    <div class="document-card">
+                        <div class="doc-info">
+                            <h3>${item.titlu}</h3>
+                            <div class="tags">
+                                <span class="tag">Anul ${item.an}</span>
+                                <span class="tag">Etapa ${item.etapa}</span>
+                            </div>
+                        </div>
+                        <div class="doc-buttons">
+                            <a href="${item.linkSub}" target="_blank" class="btn btn-subject">Subiect</a>
+                            <a href="${item.linkBar}" target="_blank" class="btn btn-scheme">Barem</a>
+                        </div>
+                    </div>`;
+            });
+        }
+        filtreaza();
+    </script>
+</body>
+</html>

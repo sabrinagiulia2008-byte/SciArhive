@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olimpiada de Chimie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container" style="margin:0 auto; padding:0;">
+            <a href="index.html" class="back-link">← Înapoi la portal</a>
+            <h1>🧪 Olimpiada de Chimie</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="search-box">
+            <div class="filter-group">
+                <label for="filter-year">Anul</label>
+                <select id="filter-year" onchange="filtreaza()">
+                    <option value="toate">Toți anii</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="filter-stage">Etapa</label>
+                <select id="filter-stage" onchange="filtreaza()">
+                    <option value="toate">Toate etapele</option>
+                    <option value="Locala">Etapa Locală</option>
+                    <option value="Judeteana">Etapa Județeană</option>
+                    <option value="Nationala">Etapa Națională</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="filter-grade">Clasa</label>
+                <select id="filter-grade" onchange="filtreaza()">
+                    <option value="toate">Toate clasele</option>
+                    <option value="8">Clasa a VIII-a</option>
+                    <option value="9">Clasa a IX-a</option>
+                    <option value="10">Clasa a X-a</option>
+                    <option value="11">Clasa a XI-a</option>
+                    <option value="12">Clasa a XII-a</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="results" class="results-container"></div>
+    </div>
+
+    <script>
+        // Date specifice doar pentru chimie
+        const dateChimie = [
+            { an: "2025", etapa: "Judeteana", clasa: "10", titlu: "Olimpiada de Chimie - Etapa Județeană", linkSub": "pdf/chimie_2025_j_c10_sub.pdf", linkBar: "pdf/chimie_2025_j_c10_bar.pdf" },
+            { an: "2024", etapa: "Nationala", clasa: "11", titlu: "Olimpiada de Chimie - Etapa Națională", linkSub": "pdf/chimie_2024_n_c11_sub.pdf", linkBar: "pdf/chimie_2024_n_c11_bar.pdf" }
+        ];
+
+        function filtreaza() {
+            const an = document.getElementById('filter-year').value;
+            const etapa = document.getElementById('filter-stage').value;
+            const clasa = document.getElementById('filter-grade').value;
+            const container = document.getElementById('results');
+            container.innerHTML = '';
+
+            const filtrate = dateChimie.filter(item => {
+                return (an === 'toate' || item.an === an) &&
+                       (etapa === 'toate' || item.etapa === etapa) &&
+                       (clasa === 'toate' || item.clasa === clasa);
+            });
+
+            if(filtrate.length === 0) {
+                container.innerHTML = '<div class="no-results"><h3>Niciun rezultat</h3><p>Nu s-au găsit subiecte la chimie.</p></div>';
+                return;
+            }
+
+            filtrate.forEach(item => {
+                container.innerHTML += `
+                    <div class="document-card">
+                        <div class="doc-info">
+                            <h3>${item.titlu}</h3>
+                            <div class="tags">
+                                <span class="tag">Anul ${item.an}</span>
+                                <span class="tag">Etapa ${item.etapa}</span>
+                                <span class="tag">Clasa a ${item.clasa}-a</span>
+                            </div>
+                        </div>
+                        <div class="doc-buttons">
+                            <a href="${item.linkSub}" target="_blank" class="btn btn-subject">Subiect</a>
+                            <a href="${item.linkBar}" target="_blank" class="btn btn-scheme">Barem</a>
+                        </div>
+                    </div>`;
+            });
+        }
+        filtreaza();
+    </script>
+</body>
+</html>
