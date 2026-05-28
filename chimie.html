@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olimpiada de Chimie</title>
+    <title>Olimpiada de Chimie - SciArhive</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <header>
         <div class="container" style="margin:0 auto; padding:0;">
             <a href="index.html" class="back-link">← Înapoi la portal</a>
-            <h1>🧪 Olimpiada de Chimie</h1>
+            <h1>🧪 Olimpiada de Chimie (OJC / ONC)</h1>
         </div>
     </header>
 
@@ -20,26 +20,26 @@
             <div class="filter-group">
                 <label for="filter-year">Anul</label>
                 <select id="filter-year" onchange="filtreaza()">
-                    <option value="toate">Toți anii</option>
+                    <option value="toate">Selectează anul</option>
                     <option value="2025">2025</option>
-                    <option value="2024">2024</option>
                 </select>
             </div>
 
             <div class="filter-group">
-                <label for="filter-stage">Etapa</label>
+                <label for="filter-stage">Etapa / Proba</label>
                 <select id="filter-stage" onchange="filtreaza()">
-                    <option value="toate">Toate etapele</option>
-                    <option value="Locala">Etapa Locală</option>
-                    <option value="Judeteana">Etapa Județeană</option>
-                    <option value="Nationala">Etapa Națională</option>
+                    <option value="toate">Selectează etapa</option>
+                    <option value="Judeteana">Etapa Județeană (OJC)</option>
+                    <option value="Nationala_Teoretica">Etapa Națională - Proba Teoretică (ONC)</option>
+                    <option value="Nationala_Practica">Etapa Națională - Proba Practică (ONC)</option>
                 </select>
             </div>
 
             <div class="filter-group">
                 <label for="filter-grade">Clasa</label>
                 <select id="filter-grade" onchange="filtreaza()">
-                    <option value="toate">Toate clasele</option>
+                    <option value="toate">Selectează clasa</option>
+                    <option value="7">Clasa a VII-a</option>
                     <option value="8">Clasa a VIII-a</option>
                     <option value="9">Clasa a IX-a</option>
                     <option value="10">Clasa a X-a</option>
@@ -53,10 +53,31 @@
     </div>
 
     <script>
-        // Date specifice doar pentru chimie
         const dateChimie = [
-            { an: "2025", etapa: "Judeteana", clasa: "10", titlu: "Olimpiada de Chimie - Etapa Județeană", linkSub": "pdf/chimie_2025_j_c10_sub.pdf", linkBar: "pdf/chimie_2025_j_c10_bar.pdf" },
-            { an: "2024", etapa: "Nationala", clasa: "11", titlu: "Olimpiada de Chimie - Etapa Națională", linkSub": "pdf/chimie_2024_n_c11_sub.pdf", linkBar: "pdf/chimie_2024_n_c11_bar.pdf" }
+            // ==========================================
+            // ETAPA JUDEȚEANĂ (OJC 2025)
+            // ==========================================
+            { an: "2025", etapa: "Judeteana", clasa: "7", titlu: "Olimpiada de Chimie - Etapa Județeană", linkSub: "pdf/OJC_7_2025_S.pdf", linkBar: "pdf/OJC_7_2025_B.pdf" },
+            { an: "2025", etapa: "Judeteana", clasa: "8", titlu: "Olimpiada de Chimie - Etapa Județeană", linkSub: "pdf/OJC_8_2025_S.pdf", linkBar: "pdf/OJC_8_2025_B.pdf" },
+            { an: "2025", etapa: "Judeteana", clasa: "9", titlu: "Olimpiada de Chimie - Etapa Județeană", linkSub: "pdf/OJC_9_2025_S.pdf", linkBar: "pdf/OJC_9_2025_B.pdf" },
+            { an: "2025", etapa: "Judeteana", clasa: "10", titlu: "Olimpiada de Chimie - Etapa Județeană", linkSub: "pdf/OJC_10_2025_S.pdf", linkBar: "pdf/OJC_10_2025_B.pdf" },
+            { an: "2025", etapa: "Judeteana", clasa: "11", titlu: "Olimpiada de Chimie - Etapa Județeană", linkSub: "pdf/OJC_11_2025_S.pdf", linkBar: "pdf/OJC_11_2025_B.pdf" },
+            { an: "2025", etapa: "Judeteana", clasa: "12", titlu: "Olimpiada de Chimie - Etapa Județeană", linkSub: "pdf/OJC_12_2025_S.pdf", linkBar: "pdf/OJC_12_2025_B.pdf" },
+
+            // ==========================================
+            // ETAPA NAȚIONALĂ - PROBA PRACTICĂ (ONC 2025)
+            // ==========================================
+            { an: "2025", etapa: "Nationala_Practica", clasa: "7", titlu: "Olimpiada Națională de Chimie - Proba Practică", linkSub: "pdf/ONC_7_2025_S_P.pdf", linkBar: "pdf/ONC_7_2025_B_P.pdf" },
+            { an: "2025", etapa: "Nationala_Practica", clasa: "8", titlu: "Olimpiada Națională de Chimie - Proba Practică", linkSub: "pdf/ONC_8_2025_S_P.pdf", linkBar: "pdf/ONC_8_2025_B_P.pdf" },
+            { an: "2025", etapa: "Nationala_Practica", clasa: "9", titlu: "Olimpiada Națională de Chimie - Proba Practică", linkSub: "pdf/ONC_9_2025_S_P.pdf", linkBar: "pdf/ONC_9_2025_B_P.pdf" },
+            // Notă: adaugă liniile pentru clasele 10-12 practică dacă deții sau obții fișierele respective în viitor
+
+            // ==========================================
+            // ETAPA NAȚIONALĂ - PROBA TEORETICĂ (ONC 2025)
+            // ==========================================
+            { an: "2025", etapa: "Nationala_Teoretica", clasa: "10", titlu: "Olimpiada Națională de Chimie - Proba Teoretică", linkSub: "pdf/ONC_10_2025_S_T.pdf", linkBar: "pdf/ONC_10_2025_B_T.pdf" },
+            { an: "2025", etapa: "Nationala_Teoretica", clasa: "11", titlu: "Olimpiada Națională de Chimie - Proba Teoretică", linkSub: "pdf/ONC_11_2025_S_T.pdf", linkBar: "pdf/ONC_11_2025_B_T.pdf" },
+            { an: "2025", etapa: "Nationala_Teoretica", clasa: "12", titlu: "Olimpiada Națională de Chimie - Proba Teoretică", linkSub: "pdf/ONC_12_2025_S_T.pdf", linkBar: "pdf/ONC_12_2025_B_T.pdf" }
         ];
 
         function filtreaza() {
@@ -64,6 +85,12 @@
             const etapa = document.getElementById('filter-stage').value;
             const clasa = document.getElementById('filter-grade').value;
             const container = document.getElementById('results');
+
+            if (an === 'toate' && etapa === 'toate' && clasa === 'toate') {
+                afiseazaMesajInitial();
+                return;
+            }
+
             container.innerHTML = '';
 
             const filtrate = dateChimie.filter(item => {
@@ -73,29 +100,42 @@
             });
 
             if(filtrate.length === 0) {
-                container.innerHTML = '<div class="no-results"><h3>Niciun rezultat</h3><p>Nu s-au găsit subiecte la chimie.</p></div>';
+                container.innerHTML = '<div class="no-results"><h3>Niciun rezultat găsit</h3><p>Nu am găsit subiecte pentru această selecție.</p></div>';
                 return;
             }
 
             filtrate.forEach(item => {
+                let etapaAfisata = "Județeană";
+                if (item.etapa === "Nationala_Teoretica") etapaAfisata = "Națională (Teoretică)";
+                if (item.etapa === "Nationala_Practica") etapaAfisata = "Națională (Practică)";
+
                 container.innerHTML += `
                     <div class="document-card">
                         <div class="doc-info">
                             <h3>${item.titlu}</h3>
                             <div class="tags">
                                 <span class="tag">Anul ${item.an}</span>
-                                <span class="tag">Etapa ${item.etapa}</span>
+                                <span class="tag">${etapaAfisata}</span>
                                 <span class="tag">Clasa a ${item.clasa}-a</span>
                             </div>
                         </div>
                         <div class="doc-buttons">
-                            <a href="${item.linkSub}" target="_blank" class="btn btn-subject">Subiect</a>
-                            <a href="${item.linkBar}" target="_blank" class="btn btn-scheme">Barem</a>
+                            <a href="${item.linkSub}" target="_blank" class="btn btn-subject">Subiect (PDF)</a>
+                            <a href="${item.linkBar}" target="_blank" class="btn btn-scheme">Barem (PDF)</a>
                         </div>
                     </div>`;
             });
         }
-        filtreaza();
+
+        function afiseazaMesajInitial() {
+            document.getElementById('results').innerHTML = `
+                <div class="no-results" style="border: 1px dashed var(--primary-color); background-color: #f0f9ff;">
+                    <h3 style="color: var(--primary-color); margin: 0 0 0.5rem 0;">🔍 Pune filtrele în acțiune!</h3>
+                    <p style="margin: 0;">Alege anul, etapa/proba și clasa din meniurile de mai sus pentru a vizualiza documentele.</p>
+                </div>`;
+        }
+
+        afiseazaMesajInitial();
     </script>
 </body>
 </html>
